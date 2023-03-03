@@ -2,9 +2,9 @@ const { User } = require("../models/userModel");
 
 
 const getSignedInUser = (req, res) => {
-    const id = req.body.signedInUser;
+    const _id = req.body.signedInUser;
 
-    User.findOne({"_id": id}, (err, user)=> {
+    User.findOne({_id}, (err, user)=> {
         if(err) {
             res.json({status: false, message: "Please reload this page"})
         }else {

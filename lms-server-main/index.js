@@ -37,14 +37,8 @@ const {editCourseResources} = require('./controllers/editCourse');
 
 const {editPrice} = require('./controllers/editCourse')
 
+const {deleteCourse} = require('./controllers/delete-course');
 
-// const {connection} = require("./prepared/connection")
-// connection()
-
-
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({limit: '100mb', extended: true}))
-// app.use(express.json());
 app.use(express.urlencoded({extended:true,limit:'100mb'}));
 app.use(express.json({limit: '100mb'}))
 app.use(cors());
@@ -77,8 +71,6 @@ app.post('/api/user/add-to-cart', addToCart)
 app.post('/api/user/get-items-from-cart', getItemsFromCart);
 
 app.post('/api/user/delete-from-cart', deleteFromCart);
-// app.post('/user/delete',deleteCart)
-
 app.post('/api/user/edit-course-details', editCourseDetails);
 
 app.post('/api/user/get-course-resources', getCourseResources)
@@ -89,9 +81,7 @@ app.post('/api/user/edit-resource-details', editCourseResources)
 
 app.post('/api/user/edit-course-price', editPrice);
 
-
-
-
+app.post('/api/user/delete-course', deleteCourse)
 
 app.listen(PORT, ()=> {
     console.log(`server is listening on port ${PORT}`);

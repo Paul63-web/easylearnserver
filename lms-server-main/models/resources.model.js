@@ -21,6 +21,9 @@ const resourcesSchema = mongoose.Schema({
     resourceType: {
         type: String,
         required: true
+    },
+    resourceLink: {
+        type: String
     }
 })
 
