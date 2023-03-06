@@ -50,9 +50,10 @@ app.use(express.json({limit: '100mb'}))
 
 // FOR LOCAL USE
 // app.use(cors({origin: "http://localhost:4093"}));
+app.use(cors());
 
 // FOR DEVELOPMENT USE
-app.use(cors({origin:"https://easylearningmanagement.netlify.app"}));
+// app.use(cors({origin:"https://easylearningmanagement.netlify.app"}));
 
 const PORT = process.env.PORT || 3487;
 
