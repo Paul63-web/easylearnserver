@@ -21,6 +21,7 @@ const stageOneOfAddCourse = async(req, res)=> {
           if(err) {
             res.json({status: false, message: "Error occurred while adding course. Please try again", errorOccurred: true})
           }else{
+            console.log(result)
             Courses.create( {courseName, courseCategory, courseDescription, authorId: signedInUser, coverImage: result.secure_url}, (err, response)=> {
               if(err) {
                 console.log(err);
@@ -33,7 +34,7 @@ const stageOneOfAddCourse = async(req, res)=> {
           }
         })
 
-      }else {
+      }else if(foundCourse) {
         console.log('Course exists');
        res.json({status: false, message: "You already have a course with the same name. Go back and edit", isExist: true})
       }

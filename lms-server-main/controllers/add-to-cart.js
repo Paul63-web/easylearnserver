@@ -1,17 +1,31 @@
 const {Cart} = require('../models/addToCart.model');
 const {Courses} = require('../models/courses.model')
+const {handleError} = require('../prepared/handleError')
 
 
 const addToCart = (req, res)=>{
     const {_id, signedInUser, courseName, coverImage, free_paid} = req.body;
     console.log(req.body);
-    Cart.create({courseId: _id, userId: signedInUser, courseName, coverImage,free_paid}, (err, response)=> {
-        if(err) {
-            console.log(err);
-            res.json({status: false, message: "Error occurred"})
-        }else {
-            console.log(response)
-            console.log({status: true, message: "Added"});
+    Cart.findOne({"courseId": _id}, (err, foundItem)=> {
+        if (err) {
+            handleError(res, err);
+        } else {
+            if (foundItem) {
+                console.log(foundItem)
+                res.json({ itemAlreadyInCart: true, message: "Item already in your cart" })
+            } else if (!foundItem) {
+                Cart.create({courseId: _id, userId: signedInUser, courseName, coverImage,free_paid}, (err, response)=> {
+                    if(err) {
+                        console.log(err);
+                        res.json({status: false, message: "Error occurred"})
+                    }else {
+                        console.log(response)
+                        console.log({status: true, message: "Added"});
+                    }
+                })                
+            } else {
+                return;
+            }
         }
     })
 }

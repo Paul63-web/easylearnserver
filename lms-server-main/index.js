@@ -1,8 +1,13 @@
 const express = require('express');
+
 const app = express();
+
 const cors = require('cors');
+
 const {connection} = require('./prepared/connection') 
+
 connection();
+
 const { newUser } = require('./controllers/register');
 
 const { login } = require('./controllers/login');
@@ -40,15 +45,20 @@ const {editPrice} = require('./controllers/editCourse')
 const {deleteCourse} = require('./controllers/delete-course');
 
 app.use(express.urlencoded({extended:true,limit:'100mb'}));
+
 app.use(express.json({limit: '100mb'}))
-app.use(cors());
+
+// FOR LOCAL USE
+// app.use(cors({origin: "http://localhost:4093"}));
+
+// FOR DEVELOPMENT USE
+app.use(cors({origin:"https://easylearningmanagement.netlify.app"}));
 
 const PORT = process.env.PORT || 3487;
 
 app.use("/api/user/", authenticateUser)
 
 app.get('/api/getConnection', )
-
 
 app.post("/api/account/register", newUser);
 
@@ -71,6 +81,7 @@ app.post('/api/user/add-to-cart', addToCart)
 app.post('/api/user/get-items-from-cart', getItemsFromCart);
 
 app.post('/api/user/delete-from-cart', deleteFromCart);
+
 app.post('/api/user/edit-course-details', editCourseDetails);
 
 app.post('/api/user/get-course-resources', getCourseResources)
