@@ -50,7 +50,7 @@ app.use(express.json({limit: '100mb'}))
 
 // FOR LOCAL USE
 // app.use(cors({origin: "http://localhost:4093"}));
-app.use(cors());
+app.use(cors({origin: "*"}));
 
 // FOR DEVELOPMENT USE
 // app.use(cors({origin:"https://easylearningmanagement.netlify.app"}));
