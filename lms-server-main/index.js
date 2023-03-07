@@ -43,17 +43,15 @@ const {editCourseResources} = require('./controllers/editCourse');
 const {editPrice} = require('./controllers/editCourse')
 
 const {deleteCourse} = require('./controllers/delete-course');
+const { transactionHistory } = require('./controllers/transaction-history');
+const { verifyPayment } = require('./controllers/verify-payment');
 
 app.use(express.urlencoded({extended:true,limit:'100mb'}));
 
 app.use(express.json({limit: '100mb'}))
 
 // FOR LOCAL USE
-// app.use(cors({origin: "http://localhost:4093"}));
-// app.use(cors({origin: "*"}));
-
-// FOR DEVELOPMENT USE
-app.use(cors({origin:"https://easylearningmanagement.netlify.app"}));
+app.use(cors({origin: process.env.CORS_URL}));
 
 const PORT = process.env.PORT || 3487;
 
@@ -93,7 +91,11 @@ app.post('/api/user/edit-resource-details', editCourseResources)
 
 app.post('/api/user/edit-course-price', editPrice);
 
-app.post('/api/user/delete-course', deleteCourse)
+app.post('/api/user/delete-course', deleteCourse);
+
+app.post('/api/user/verify-payment', verifyPayment);
+
+app.post('/api/user/trasaction-history', transactionHistory);
 
 app.listen(PORT, ()=> {
     console.log(`server is listening on port ${PORT}`);
