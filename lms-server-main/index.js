@@ -98,6 +98,6 @@ app.post('/api/user/verify-payment', verifyPayment);
 app.post('/api/user/trasaction-history', transactionHistory);
 
 app.listen(PORT, ()=> {
-    console.log(`server is listening on port ${PORT}`);
+    
 })
 
