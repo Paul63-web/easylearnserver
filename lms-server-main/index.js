@@ -96,6 +96,6 @@ app.post('/api/user/edit-course-price', editPrice);
 app.post('/api/user/delete-course', deleteCourse)
 
 app.listen(PORT, ()=> {
-    console.log(`server is listening on port ${PORT}`);
+    
 })
 
