@@ -1,6 +1,5 @@
 const { Courses } = require("../models/courses.model");
 
-
 const cloudinary = require('cloudinary');
 
 cloudinary.config({ 

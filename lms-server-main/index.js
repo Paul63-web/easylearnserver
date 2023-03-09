@@ -45,6 +45,7 @@ const {editPrice} = require('./controllers/editCourse')
 const {deleteCourse} = require('./controllers/delete-course');
 const { transactionHistory } = require('./controllers/transaction-history');
 const { verifyPayment } = require('./controllers/verify-payment');
+const { uploadProfilePix } = require('./controllers/edit-profile');
 
 app.use(express.urlencoded({extended:true,limit:'100mb'}));
 
@@ -96,6 +97,8 @@ app.post('/api/user/delete-course', deleteCourse);
 app.post('/api/user/verify-payment', verifyPayment);
 
 app.post('/api/user/trasaction-history', transactionHistory);
+
+app.post('/api/user/upload-profile-picture', uploadProfilePix);
 
 app.listen(PORT, ()=> {
     
